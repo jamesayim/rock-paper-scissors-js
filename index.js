@@ -93,6 +93,4 @@ const humanSelection = getHumanChoice;
     nextRound(0);
 }
 
-setTimeout(() => {
-    playGame();
-}, 9000);
+setTimeout(playGame, 9000);
