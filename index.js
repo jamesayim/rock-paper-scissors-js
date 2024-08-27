@@ -76,7 +76,7 @@ const humanSelection = getHumanChoice;
     }
 
     function nextRound(round) {
-        if (round < 5) {
+        if (round < 6) {
             const humanChoice = prompt("Enter your choice (rock, paper, scissors):");
             const humanSelection = getHumanChoice(humanChoice);
             const computerSelection = getComputerChoice();
