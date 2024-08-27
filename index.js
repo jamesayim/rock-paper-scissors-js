@@ -83,7 +83,7 @@ const humanSelection = getHumanChoice;
             playRound(humanSelection, computerSelection);
 
             setTimeout(() => {
-                nextRound(round + 1); // Proceed to the next round after 5 seconds
+                nextRound(round + 1); // Proceed to the next round after 6 seconds
             }, 1500);
         } else {
             console.log(`Final Score - You: ${humanScore}, Computer: ${computerScore}`);
@@ -93,4 +93,6 @@ const humanSelection = getHumanChoice;
     nextRound(0);
 }
 
-playGame();
+setTimeout(() => {
+    playGame();
+}, 9000);
