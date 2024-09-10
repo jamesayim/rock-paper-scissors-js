@@ -4,11 +4,31 @@
         <title>Rock Paper Scissors</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script defer src="./index.js"></script>
+        <link href="./styles.css" rel="stylesheet">
     </head>
     <body>
-        <main>
-            <h1>Open the console using (CTRL + SHIFT + J) and refresh the page to start the game.</h1>
-        </main>
-        <script src="./index.js"></script>
+
+        <h2>Rock Paper Scissors Game</h2>
+            <div id="button-container">
+                <button class="rockButton button">Rock</button>
+                <button class="paperButton button">Paper</button>
+                <button class="scissorsButton button">Scissors</button>
+            </div>
+
+
+            <div id="game-display-container">
+                <div id="scoreContainer">
+                    <p class="humanScore" id="hs"></p>
+                    <p class="computerScore" id="cs"></p>    
+                </div>
+                <div id="textContainer">
+                    <p class="computerText" id="ct"></p>
+                    <p class="yoursText" id="yt"></p>
+                </div>
+                <div id="gameplayTextContainer">
+                    <p class="gameplayText" id="gpt"></p>
+                </div>
+            </div>
     </body>
 </html>

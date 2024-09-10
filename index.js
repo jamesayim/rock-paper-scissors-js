@@ -12,85 +12,82 @@ function getComputerChoice() {
     }
 }
 
-const regexRock = /rock/i;
-const regexPaper = /paper/i;
-const regexScissors = /scissors/i;
-
-function getHumanChoice(humanChoice) {
-    if (regexRock.test(humanChoice)) {
-        return items[0];
-    } else if (regexPaper.test(humanChoice)) {
-        return items[1];
-    } else if (regexScissors.test(humanChoice)) {
-        return items[2];
-    } else {
-        return "Enter the right choice.";
-    }
-}
-
-function playGame() {
 let humanScore = 0;
 let computerScore = 0;
-const humanSelection = getHumanChoice;
 
-        if (!humanSelection) {
-        console.log("Invalid choice. Please enter rock, paper, or scissors.");
-        return;
-}
-    function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice, computerChoice) {
     
-        if (regexRock.test(humanChoice) && regexScissors.test(computerChoice)) {
-        console.log("You win! Rock beats Scissors");
+    if (humanChoice === "rock" && computerChoice === "scissors") {
+        gameplayText.textContent = "You win! Rock beats Scissors";
         humanScore++;
-        console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
+        humanScoreElement.textContent = `Your score: ${humanScore}`;
+        computerScoreElement.textContent = `Computer score: ${computerScore}`;
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     
-        } else if (regexScissors.test(humanChoice) && regexRock.test(computerChoice)) {
-            console.log("You lose! Rock beats Scissors");
-            computerScore++;
-            console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
+    } else if (humanChoice === "scissors" && computerChoice === "rock") {
+        gameplayText.textContent = "You lose! Rock beats Scissors";
+        computerScore++;
+        computerScoreElement.textContent = `Computer score: ${computerScore}`;
+        humanScoreElement.textContent = `Your score: ${humanScore}`;
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     
-        }  else if (regexScissors.test(humanChoice) && regexPaper.test(computerChoice)) {
-            console.log("You win! Scissors beats Paper");
-            humanScore++;
-            console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
+    }  else if (humanChoice === "scissors" && computerChoice === "paper") {
+        gameplayText.textContent = "You win! Scissors beats Paper";
+        humanScore++;
+        humanScoreElement.textContent = `Your score: ${humanScore}`;
+        computerScoreElement.textContent = `Computer score: ${computerScore}`;
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     
-        } else if (regexPaper.test(humanChoice) && regexScissors.test(computerChoice)) {
-            console.log("You lose! Scissors beats Paper");
-            computerScore++;
-            console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
+    } else if (humanChoice === "paper" && computerChoice === "scissors") {
+        gameplayText.textContent = "You lose! Scissors beats Paper";
+        computerScore++;
+        computerScoreElement.textContent = `Computer score: ${computerScore}`;
+        humanScoreElement.textContent = `Your score: ${humanScore}`;
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     
-        } else if (regexPaper.test(humanChoice) && regexRock.test(computerChoice)) {
-            console.log("You win! Paper beats Rock");
-            humanScore++;
-            console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
+    } else if (humanChoice === "paper" && computerChoice === "rock") {
+        gameplayText.textContent = "You win! Paper beats Rock";
+        humanScore++;
+        humanScoreElement.textContent = `Your score: ${humanScore}`;
+        computerScoreElement.textContent = `Computer score: ${computerScore}`;
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     
-        } else if (regexRock.test(humanChoice) && regexPaper.test(computerChoice)) {
-            console.log("You lose! Paper beats Rock");
-            computerScore++;
-            console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
+    } else if (humanChoice === "rock" && computerChoice === "paper") {
+        gameplayText.textContent = "You lose! Paper beats Rock";
+        computerScore++;
+        computerScoreElement.textContent = `Computer score: ${computerScore}`;
+        humanScoreElement.textContent = `Your score: ${humanScore}`;
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     
-        } else {
-            console.log("That's a tie. Go another round.");
-            console.log("Computer: " + computerChoice + ", " + "Yours: " + humanChoice);
-        }
+    } else {
+        gameplayText.textContent = "That's a tie. Go another round.";
+        yoursText.textContent = `Yours: ${humanChoice}`;
+        computerText.textContent = `Computer: ${computerChoice}`;
     }
-
-    function nextRound(round) {
-        if (round < 6) {
-            const humanChoice = prompt("Enter your choice (rock, paper, scissors):");
-            const humanSelection = getHumanChoice(humanChoice);
-            const computerSelection = getComputerChoice();
-            playRound(humanSelection, computerSelection);
-
-            setTimeout(() => {
-                nextRound(round + 1); // Proceed to the next round after 6 seconds
-            }, 1500);
-        } else {
-            console.log(`Final Score - You: ${humanScore}, Computer: ${computerScore}`);
-        }
-    }
-
-    nextRound(0);
 }
 
-setTimeout(playGame, 9000);
+const rockButton = document.querySelector(".rockButton");
+const paperButton = document.querySelector(".paperButton");
+const scissorsButton = document.querySelector(".scissorsButton");
+
+rockButton.addEventListener("click", () => playRound("rock", getComputerChoice()));
+paperButton.addEventListener("click", () => playRound("paper", getComputerChoice()));
+scissorsButton.addEventListener("click", () => playRound("scissors", getComputerChoice()));
+
+/* Your Text and Computer Text elements */
+const yoursText = document.querySelector(".yoursText");
+const computerText = document.querySelector(".computerText");
+
+const humanScoreElement = document.querySelector(".humanScore"); // Query p element for human score text
+const displayContainer = document.querySelector("#game-display-container");
+const computerScoreElement = document.querySelector(".computerScore"); // Query p element for computer score text
+// Query another element for gameplay text
+const gameplayText = document.querySelector(".gameplayText");
+// Query an element for the final gameplay text
+const finalGpText = document.querySelector(".finalGpText");
